@@ -14,8 +14,9 @@ except:
 
 
 def main():
-    # faces, labels = pickle.load(open('faces.p', 'rb')) if os.path.isfile('faces.p') else [], []
-    faces, labels = [], []
+    faces, labels = pickle.load(open('faces.p', 'rb')) if os.path.isfile('faces.p') else [], []
+    faces = faces[0]
+    labesl = faces[1]
     fgbg = cv2.createBackgroundSubtractorMOG2()
     if picamera:
         camera = PiCamera()
@@ -71,7 +72,7 @@ def process(frame, faces2, labels):
         face = cv2.resize(face, (250, 250))
         process_face(face, i, faces2, labels)
         # cv2.imshow("face", face)
-    # process_face(frame, 0)
+    # process_face(frame, 0, faces2, labels)
     cv2.imshow("Original", frame)
 
 
